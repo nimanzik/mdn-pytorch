@@ -1,5 +1,5 @@
-# Run: pre-commit install (once)
-# Run: pre-commit run --all-files (to check all files)
+# Run: prek install (once)
+# Run: prek run --all-files (to check all files)
 
 repos:
   # Ruff for linting and formatting
