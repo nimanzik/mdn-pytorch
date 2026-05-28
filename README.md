@@ -1,4 +1,4 @@
-# PyTorch MDN
+# MDN PyTorch
 
 ***A PyTorch implementation of Mixture Density Networks (MDN) for modelling multi-modal distributions in regression tasks.***
 
@@ -8,7 +8,7 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/nimanzik/pytorch-mdn/actions/workflows/ci.yml/badge.svg)](https://github.com/nimanzik/pytorch-mdn/actions/workflows/ci.yml)
+[![CI](https://github.com/nimanzik/mdn-pytorch/actions/workflows/ci.yml/badge.svg)](https://github.com/nimanzik/mdn-pytorch/actions/workflows/ci.yml)
 
 ## Overview
 
@@ -34,7 +34,7 @@ This implementation uses Gaussian mixture models where each component shares the
 You can add (install) the package to your project using `uv`:
 
 ```bash
-uv add git+https://github.com/nimanzik/pytorch-mdn.git
+uv add git+https://github.com/nimanzik/mdn-pytorch.git
 ```
 
 ## Quick Start
@@ -42,8 +42,8 @@ uv add git+https://github.com/nimanzik/pytorch-mdn.git
 ```python
 import torch
 
-from pytorch_mdn.loss import mdn_loss
-from pytorch_mdn.model import MixtureDensityNetwork
+from mdn_pytorch.loss import mdn_loss
+from mdn_pytorch.model import MixtureDensityNetwork
 
 input_dim = 12  # Number of input features
 output_dim = 3  # Number of output dimensions

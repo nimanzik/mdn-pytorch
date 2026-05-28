@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 import torch
 
-from pytorch_mdn.activations import ElevatedELU
+from mdn_pytorch.activations import ElevatedELU
 
 
 class TestElevatedELU:

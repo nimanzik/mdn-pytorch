@@ -1,5 +1,5 @@
 [project]
-name = "pytorch-mdn"
+name = "mdn-pytorch"
 version = "0.1.0"
 description = "Mixture Density Network (MDN) implemented in PyTorch"
 readme = "README.md"
