@@ -1,9 +1,10 @@
 # MDN PyTorch
 
-***A PyTorch implementation of Mixture Density Networks (MDN) for modelling multi-modal distributions in regression tasks.***
+***A PyTorch implementation of Mixture Density Networks (MDN) for modelling
+multi-modal distributions in regression tasks.***
 
-[![Python 3.13+](https://img.shields.io/badge/Python-3.13+-blue.svg)](https://python.org/)
-[![pytorch](https://img.shields.io/badge/PyTorch-2.9-EE4C2C?style=flat&logo=pytorch&logoColor=EE4C2C)](https://pytorch.org/)
+[![Python 3.13+](https://img.shields.io/badge/Python-3.13+-blue.svg?style=flat&logo=python&logoColor=skyblue)](https://python.org/)
+[![pytorch](https://img.shields.io/badge/PyTorch-2.9+-EE4C2C?style=flat&logo=pytorch&logoColor=EE4C2C)](https://pytorch.org/)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![prek](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json)](https://github.com/j178/prek)
@@ -12,22 +13,28 @@
 
 ## Overview
 
-A Mixture Density Network (MDN) is a neural network that predicts the parameters of a mixture of distributions rather than a single point estimate. This makes MDN particularly useful for regression problems where:
+A Mixture Density Network (MDN) is a neural network that predicts the parameters
+of a mixture of distributions rather than a single point estimate. This makes
+MDN particularly useful for regression problems where:
 
 - The relationship between inputs and outputs is one-to-many (inverse problems).
 - The target distribution is multi-modal or highly uncertain.
 
-This implementation uses Gaussian mixture models where each component shares the same standard deviation across output dimensions (isotropic Gaussians).
+This implementation uses Gaussian mixture models where each component shares the
+same standard deviation across output dimensions (isotropic Gaussians).
 
 ## Features
 
 - **Multiple inference modes**:
-  - `weighted_mean`: Expected value E[Y|X] computed as weighted average of component means.
+  - `weighted_mean`: Expected value E[Y|X] computed as weighted average of
+    component means.
   - `argmax_mean`: Mean of the most probable component (it's a fast approximation).
   - `sample_[mean|median]`: Mean/median of samples drawn from the mixture distribution.
-- **PyTorch Lightning integration**: Built-in training module for easy training and validation.
+- **PyTorch Lightning integration**: Built-in training module for easy training
+  and validation.
 - **Pydantic-based configuration**: Type-safe model and training setup.
-- **C-Mixup support**: Data augmentation that improves generalisation on regression tasks.
+- **C-Mixup support**: Data augmentation that improves generalisation on
+  regression tasks.
 
 ## Installation
 
@@ -87,4 +94,5 @@ quantiles = model.predict_quantiles(x, quantiles=[0.05, 0.5, 0.95])
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file
+for details.
