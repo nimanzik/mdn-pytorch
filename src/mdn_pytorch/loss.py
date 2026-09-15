@@ -7,6 +7,9 @@ if TYPE_CHECKING:
     from torch import Tensor as TorchTensor
 
 
+LOG_2PI = math.log(2.0 * math.pi)
+
+
 def mdn_loss(
     log_pi: TorchTensor, mu: TorchTensor, sigma: TorchTensor, target: TorchTensor
 ) -> TorchTensor:
@@ -41,11 +44,11 @@ def mdn_loss(
 
     sigma_clamped = sigma.clamp(min=1e-7)
     log_probs = (
-        -0.5 * output_dim * math.log(2.0 * math.pi)
+        -0.5 * output_dim * LOG_2PI
         - output_dim * sigma_clamped.log()
         - (target_expanded - mu).pow(2).sum(dim=-1) / (2.0 * sigma_clamped.pow(2))
     )
     weighted_log_probs = log_pi + log_probs
 
     # Negative log-likelihood
-    return -1.0 * weighted_log_probs.logsumexp(dim=-1).mean()
+    return -weighted_log_probs.logsumexp(dim=-1).mean()

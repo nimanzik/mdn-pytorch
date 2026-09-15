@@ -21,8 +21,8 @@ class MixtureDensityNetwork(nn.Module):
     ----------
     input_dim : int
         Dimension of input features.
-    hidden_dims : list[int] or int
-        Hidden layer dimensions. Can be a single int or list of ints.
+    hidden_dims : list[int]
+        Hidden layer dimensions.
     output_dim : int
         Dimension of output targets.
     n_components : int
@@ -43,7 +43,7 @@ class MixtureDensityNetwork(nn.Module):
     def __init__(
         self,
         input_dim: int,
-        hidden_dims: list[int] | int,
+        hidden_dims: list[int],
         output_dim: int,
         n_components: int,
         activation_type: str,
@@ -55,9 +55,6 @@ class MixtureDensityNetwork(nn.Module):
         self.input_dim = input_dim
         self.output_dim = output_dim
         self.n_components = n_components
-
-        if isinstance(hidden_dims, int):
-            hidden_dims = [hidden_dims]
         self.hidden_dims: list[int] = hidden_dims
 
         # Create MLP backbone

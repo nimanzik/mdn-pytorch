@@ -42,8 +42,6 @@ class TabularDataModule(LightningDataModule):
         Features DataFrame.
     y_df : pl.DataFrame
         Labels DataFrame.
-    meta_df : pl.DataFrame or None, default=None
-        Optional metadata DataFrame. Currently not used.
     x_scaler : FunctionTransformer or MinMaxScaler or StandardScaler \
 or None, default=None
         Transformer for features. If None, uses FunctionTransformer
@@ -79,7 +77,6 @@ or None, default=None
         self,
         x_df: pl.DataFrame,
         y_df: pl.DataFrame,
-        meta_df: pl.DataFrame | None = None,
         x_scaler: FunctionTransformer | MinMaxScaler | StandardScaler | None = None,
         y_scaler: FunctionTransformer | MinMaxScaler | StandardScaler | None = None,
         val_ratio: float = 0.2,
@@ -93,13 +90,10 @@ or None, default=None
     ) -> None:
         super().__init__()
         # Save all the hyperparameters passed to the constructor
-        self.save_hyperparameters(
-            ignore=["x_df", "y_df", "meta_df", "x_scaler", "y_scaler"]
-        )
+        self.save_hyperparameters(ignore=["x_df", "y_df", "x_scaler", "y_scaler"])
 
         self.x_df = x_df
         self.y_df = y_df
-        self.meta_df = meta_df
 
         self.val_ratio = val_ratio
         self.test_ratio = test_ratio

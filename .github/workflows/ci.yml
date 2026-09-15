@@ -2,9 +2,9 @@ name: CI
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   push:
-    branches: [ main ]
+    branches: [main]
 
 # Concurrency group to cancel in-progress CI runs when pushing new commits to
 # the same branch/PR. Saves CI resources and gives faster feedback.
@@ -16,7 +16,7 @@ env:
   UV_VERSION: "0.9"
 
 jobs:
-  lint-format:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,26 +42,10 @@ jobs:
           echo "Running ruff formatter..."
           uvx ruff format --check src/
 
-  type-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-        with:
-          version: ${{ env.UV_VERSION }}
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version-file: ".python-version"
-
       - name: Install dependencies
-        run: uv sync --frozen --dev
+        run: uv sync --frozen --no-dev --group quality
 
-      - name: Run type checker
+      - name: Run ty type checker
         run: |
           echo "Running ty type checker..."
           uv run ty check src/
@@ -83,7 +67,7 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install dependencies
-        run: uv sync --frozen --dev
+        run: uv sync --frozen --no-dev --group test
 
       - name: Run tests
         run: |
