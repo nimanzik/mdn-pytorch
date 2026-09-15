@@ -43,12 +43,12 @@ jobs:
           uvx ruff format --check src/
 
       - name: Install dependencies
-        run: uv sync --frozen
+        run: uv sync --frozen --no-dev --group quality
 
       - name: Run ty type checker
         run: |
           echo "Running ty type checker..."
-          uvx ty check src/
+          uv run ty check src/
 
   test:
     runs-on: ubuntu-latest
@@ -67,9 +67,9 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install dependencies
-        run: uv sync --frozen
+        run: uv sync --frozen --no-dev --group test
 
       - name: Run tests
         run: |
           echo "Running tests using pytest..."
-          uvx pytest -v --tb=short tests/
+          uv run pytest -v --tb=short tests/
