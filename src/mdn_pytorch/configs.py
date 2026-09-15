@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Literal
 
 from pydantic import BaseModel, Field, field_validator
 
 if TYPE_CHECKING:
-    from .mixup import BaseMixup, KDEMixup, RandomMixup
+    from .mixup import KDEMixup, RandomMixup
     from .model import MixtureDensityNetwork
 
 
@@ -52,22 +51,7 @@ class MDNConfig(BaseModel, extra="forbid"):
         )
 
 
-class BaseMixupConfig(BaseModel, ABC):
-    """Base class for all MixUp configurations."""
-
-    @abstractmethod
-    def create_mixup(self) -> BaseMixup:
-        """Convert configuration to MixUp instance.
-
-        Returns
-        -------
-        BaseMixup
-            MixUp instance created from this configuration.
-        """
-        ...
-
-
-class RandomMixupConfig(BaseMixupConfig, extra="forbid"):
+class RandomMixupConfig(BaseModel, extra="forbid"):
     """Configuration for random MixUp augmentation."""
 
     type: Literal["random"] = "random"
@@ -85,7 +69,7 @@ class RandomMixupConfig(BaseMixupConfig, extra="forbid"):
         return RandomMixup(alpha=self.alpha, seed=self.seed)
 
 
-class KDEMixupConfig(BaseMixupConfig, extra="forbid"):
+class KDEMixupConfig(BaseModel, extra="forbid"):
     """Configuration for KDE-based MixUp augmentation.
 
     Uses kernel density estimation to find similar samples in *target space*.

@@ -87,7 +87,6 @@ quantiles = model.predict_quantiles(x, quantiles=[0.05, 0.5, 0.95])
 - Python ≥ 3.13
 - PyTorch ≥ 2.9.0
 - PyTorch Lightning ≥ 2.5.6
-- timm ≥ 1.0.22
 - Pydantic ≥ 2.12.4
 - NumPy ≥ 2.3.4
 - scikit-learn ≥ 1.7.2
