@@ -35,20 +35,20 @@ jobs:
       - name: Run ruff linter
         run: |
           echo "Running ruff linter..."
-          uvx ruff check src/
+          uvx ruff check
 
       - name: Run ruff formatter
         run: |
           echo "Running ruff formatter..."
-          uvx ruff format --check src/
+          uvx ruff format --check
 
       - name: Install dependencies
-        run: uv sync --frozen --no-dev --group quality
+        run: uv sync --frozen --no-dev --group quality --group test --extra torch-cpu
 
       - name: Run ty type checker
         run: |
           echo "Running ty type checker..."
-          uv run ty check src/
+          uv run ty check
 
   test:
     runs-on: ubuntu-latest
