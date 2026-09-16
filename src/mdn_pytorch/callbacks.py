@@ -61,8 +61,7 @@ class ScalerLoggerForMLflow(Callback):
             joblib.dump(datamodule.x_scaler, x_scaler_fpath)
 
             trainer.logger.experiment.log_artifact(
-                local_path=x_scaler_fpath.as_posix(),
-                run_id=trainer.logger.run_id,
+                local_path=x_scaler_fpath.as_posix(), run_id=trainer.logger.run_id
             )
 
             x_scaler_fpath.unlink()
@@ -73,8 +72,7 @@ class ScalerLoggerForMLflow(Callback):
             joblib.dump(datamodule.y_scaler, y_scaler_fpath)
 
             trainer.logger.experiment.log_artifact(
-                local_path=y_scaler_fpath.as_posix(),
-                run_id=trainer.logger.run_id,
+                local_path=y_scaler_fpath.as_posix(), run_id=trainer.logger.run_id
             )
 
             y_scaler_fpath.unlink()
@@ -124,8 +122,7 @@ class MDNPredictionLoggerForMLflow(BasePredictionWriter):
         st.save_file(final_preds, output_fpath)
 
         trainer.logger.experiment.log_artifact(
-            local_path=output_fpath.as_posix(),
-            run_id=trainer.logger.run_id,
+            local_path=output_fpath.as_posix(), run_id=trainer.logger.run_id
         )
 
         output_fpath.unlink()

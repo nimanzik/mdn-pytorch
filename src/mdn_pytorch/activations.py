@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import torch.nn as nn
 from torch import Tensor as TorchTensor
+from torch import nn
 
 ACTIVATION_FUNCTIONS = {
     "relu": nn.ReLU,
