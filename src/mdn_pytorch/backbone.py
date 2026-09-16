@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Literal
 
-import torch.nn as nn
 from torch import Tensor as TorchTensor
+from torch import nn
 
 from .activations import ACTIVATION_FUNCTIONS
 

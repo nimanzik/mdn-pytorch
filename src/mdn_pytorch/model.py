@@ -4,8 +4,8 @@ from typing import TYPE_CHECKING, Literal
 
 import numpy as np
 import torch
-import torch.nn as nn
 from torch import Tensor as TorchTensor
+from torch import nn
 
 from .activations import ElevatedELU
 from .backbone import MLPBackbone

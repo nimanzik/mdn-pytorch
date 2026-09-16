@@ -7,7 +7,7 @@ clean:
     @find . -type d -name ".ruff_cache" -exec rm -rf {} +
 
 uv_quality_options := "--frozen --no-dev --group quality"
-uv_test_options := "--frozen --no-dev --group test"
+uv_test_options := "--frozen --no-dev --group test --extra torch-cpu"
 pytest_options := "-v --tb=short"
 
 lint:
@@ -23,7 +23,7 @@ format-check:
     @uv run {{ uv_quality_options }} ruff format --check
 
 typecheck:
-    @uv run {{ uv_quality_options }} --group test ty check
+    @uv run {{ uv_quality_options }} --group test --extra torch-cpu ty check
 
 test python_version="3.13":
     @uv run {{ uv_test_options }} --python "{{ python_version }}" \

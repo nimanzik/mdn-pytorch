@@ -1,2 +1,7 @@
 [rules]
+division-by-zero = "warn"
 unresolved-attribute = "ignore"
+
+[src]
+# Lock what gets checked so "ty check" and "ty check ." act the same
+include = ["src/", "tests/"]

@@ -11,14 +11,19 @@ maintainers = [
     { name = "Nima Nooshiri", email = "nima.nooshiri@gmail.com" }
 ]
 dependencies = [
-    "lightning>=2.5.6",
     "numpy>=2.3.4",
     "polars>=1.35.2",
     "pydantic>=2.12.4",
     "safetensors>=0.8.0",
     "scikit-learn>=1.7.2",
-    "torch>=2.9.0",
+    "torchmetrics>=1.9.0",
 ]
+
+[project.optional-dependencies]
+torch-cpu = ["torch>=2.9.0", "lightning>=2.5.6"]
+torch-cu126 = ["torch>=2.9.0", "lightning>=2.5.6"]
+torch-cu130 = ["torch>=2.9.0", "lightning>=2.5.6"]
+torch-cu132 = ["torch>=2.9.0", "lightning>=2.5.6"]
 
 [build-system]
 requires = ["uv_build>=0.9.2,<0.10.0"]
@@ -44,3 +49,39 @@ filterwarnings = [
 
 [tool.uv]
 exclude-newer = "7 days"
+conflicts = [
+  [
+    { extra = "torch-cpu" },
+    { extra = "torch-cu126" },
+    { extra = "torch-cu130" },
+    { extra = "torch-cu132" },
+  ],
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", extra = "torch-cpu" },
+    { index = "pytorch-cu126", extra = "torch-cu126" },
+    { index = "pytorch-cu130", extra = "torch-cu130" },
+    { index = "pytorch-cu132", extra = "torch-cu132" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true

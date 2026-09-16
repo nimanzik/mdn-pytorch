@@ -38,7 +38,10 @@ def mdn_loss(
         valid behavior for *continuous* distributions.
     """
     output_dim = mu.shape[-1]
-    assert target.shape[-1] == output_dim, "Output dimension mismatch."
+    if target.shape[-1] != output_dim:
+        raise ValueError(
+            f"Target shape {target.shape} does not match output dimension {output_dim}."
+        )
 
     target_expanded = target.unsqueeze(1).expand_as(mu)
 
