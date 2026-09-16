@@ -39,13 +39,12 @@ def concatenate_batch_predictions(
 
     return {
         key: torch.cat([batch[key] for batch in predictions], dim=0)
-        for key in predictions[0].keys()
+        for key in predictions[0]
     }
 
 
 def compute_prediction_metrics(
-    predictions: dict[str, TorchTensor],
-    quantiles: Sequence[float],
+    predictions: dict[str, TorchTensor], quantiles: Sequence[float]
 ) -> dict[str, float]:
     """Compute prediction metrics (MAE and coverage) from MDN predictions.
 

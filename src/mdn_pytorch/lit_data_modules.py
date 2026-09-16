@@ -147,8 +147,8 @@ or None, default=None
 
         # Determine split sizes
         n_samples = len(self.x_df)
-        n_test = int(round(n_samples * self.test_ratio))
-        n_val = int(round(n_samples * self.val_ratio))
+        n_test = round(n_samples * self.test_ratio)
+        n_val = round(n_samples * self.val_ratio)
         n_train = n_samples - (n_val + n_test)
 
         # Create index ranges for each split
@@ -200,8 +200,7 @@ or None, default=None
 
         # Create full tensor dataset
         full_dataset = TensorDataset(
-            x_df_trans.to_torch(dtype=pl.Float32),
-            y_df_trans.to_torch(dtype=pl.Float32),
+            x_df_trans.to_torch(dtype=pl.Float32), y_df_trans.to_torch(dtype=pl.Float32)
         )
 
         # Create datasets using the split indices
